@@ -69,6 +69,19 @@ class CashManagerTest {
     }
 
     @Test
+    void addToCashWhenElementAlreadyExists() throws Exception {
+        LinkedHashSet<String> wordSet = new LinkedHashSet<>(Arrays.asList("w1", "w2", "w3", "w4"));
+        CashManager cashManager = new CashManager(wordSet);
+
+        var cash = cashManager.getCash();
+        assertEquals(4, cash.size());
+
+        cashManager.addToCash("w4");
+        cash = cashManager.getCash();
+        assertEquals(4, cash.size());
+    }
+
+    @Test
     void addToCashWhenNull() throws Exception {
         CashManager cashManager = new CashManager(null);
 

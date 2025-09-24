@@ -22,6 +22,12 @@ public class CashManager {
         if (cash == null) {
             cash = new LinkedHashSet<>();
         }
+        //доп. условие на случай мониторинга существования в кэше
+        //Но метод add сам проверяет существование элемента, работает без этого условия
+        if (cash.contains(word)) {
+            System.out.println("Element " + word + " already exists. Nothing changed");
+            return;
+        }
         var size = cash.size();
         if (size == 5) {
             var first = cash.stream().findFirst().orElseThrow();
